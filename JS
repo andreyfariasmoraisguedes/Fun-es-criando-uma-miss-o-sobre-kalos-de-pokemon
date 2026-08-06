@@ -1,0 +1,180 @@
+const caixaPrincipal = document.querySelector(".caixa-principal");
+const caixaPerguntas = document.querySelector(".caixa-perguntas");
+const caixaAlternativas = document.querySelector(".caixa-alternativas");
+const caixaResultado = document.querySelector(".caixa-resultado");
+const textoResultado = document.querySelector(".texto-resultado");
+
+const perguntas = [
+    {
+        enunciado: "Qual é o Pokémon inicial do tipo Grama da região de Kalos?",
+        alternativas: [
+            { texto: "Chespin", correta: true },
+            { texto: "Bulbasaur", correta: false },
+            { texto: "Chikorita", correta: false }
+        ]
+    },
+    {
+        enunciado: "Qual Pokémon inicial de Kalos evolui para Delphox?",
+        alternativas: [
+            { texto: "Fennekin", correta: true },
+            { texto: "Froakie", correta: false },
+            { texto: "Chespin", correta: false }
+        ]
+    },
+    {
+        enunciado: "Qual lendário de Kalos está associado à vida e à natureza?",
+        alternativas: [
+            { texto: "Xerneas", correta: true },
+            { texto: "Yveltal", correta: false },
+            { texto: "Zygarde", correta: false }
+        ]
+    },
+    {
+        enunciado: "Qual novo tipo de Pokémon foi introduzido na geração VI (Kalos)?",
+        alternativas: [
+            { texto: "Fada", correta: true },
+            { texto: "Dragão", correta: false },
+            { texto: "Aço", correta: false }
+        ]
+    },
+    {
+        enunciado: "Quem é a Campeã da Liga Pokémon da região de Kalos?",
+        alternativas: [
+            { texto: "Diantha", correta: true },
+            { texto: "Cynthia", correta: false },
+            { texto: "Alder", correta: false }
+        ]
+    },
+    {
+        enunciado: "Qual é a evolução final de Froakie?",
+        alternativas: [
+            { texto: "Greninja", correta: true },
+            { texto: "Swampert", correta: false },
+            { texto: "Inteleon", correta: false }
+        ]
+    },
+    {
+        enunciado: "Qual líder de ginásio de Kalos é especialista no tipo Inseto?",
+        alternativas: [
+            { texto: "Viola", correta: true },
+            { texto: "Bugsy", correta: false },
+            { texto: "Burgh", correta: false }
+        ]
+    },
+    {
+        enunciado: "Qual Pokémon de Kalos pode ter as formas 10%, 50% e Completa?",
+        alternativas: [
+            { texto: "Zygarde", correta: true },
+            { texto: "Rotom", correta: false },
+            { texto: "Arceus", correta: false }
+        ]
+    },
+    {
+        enunciado: "Em qual cidade de Kalos fica o ginásio do tipo Elétrico liderado por Clemont?",
+        alternativas: [
+            { texto: "Lumiose", correta: true },
+            { texto: "Santalune", correta: false },
+            { texto: "Shalour", correta: false }
+        ]
+    },
+    {
+        enunciado: "Qual desses Pokémon foi introduzido na região de Kalos?",
+        alternativas: [
+            { texto: "Sylveon", correta: true },
+            { texto: "Glaceon", correta: false },
+            { texto: "Leafeon", correta: false }
+        ]
+    },
+    {
+        enunciado: "Qual é o tipo principal do Pokémon inicial Fennekin?",
+        alternativas: [
+            { texto: "Fogo", correta: true },
+            { texto: "Psíquico", correta: false },
+            { texto: "Normal", correta: false }
+        ]
+    },
+    {
+        enunciado: "Quem é o líder do ginásio de tipo Lutador na região de Kalos?",
+        alternativas: [
+            { texto: "Korrina", correta: true },
+            { texto: "Bruno", correta: false },
+            { texto: "Marshal", correta: false }
+        ]
+    },
+    {
+        enunciado: "Qual lendário de Kalos representa a destruição?",
+        alternativas: [
+            { texto: "Yveltal", correta: true },
+            { texto: "Xerneas", correta: false },
+            { texto: "Rayquaza", correta: false }
+        ]
+    },
+    {
+        enunciado: "Qual item (junto com a Key Stone) permite a Mega Evolução introduzida em Kalos?",
+        alternativas: [
+            { texto: "Mega Stone", correta: true },
+            { texto: "Z-Crystal", correta: false },
+            { texto: "Dynamax Band", correta: false }
+        ]
+    },
+    {
+        enunciado: "Qual é o número de Fennekin na Pokédex de Kalos?",
+        alternativas: [
+            { texto: "#004", correta: true },
+            { texto: "#001", correta: false },
+            { texto: "#007", correta: false }
+        ]
+    }
+];
+
+let atual = 0;
+let perguntaAtual;
+let score = 0;
+
+function mostraPergunta(){
+    if(atual >= perguntas.length){
+        mostraResultado();
+        return;
+    }
+    perguntaAtual = perguntas[atual];
+    caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.textContent = "";
+    mostraAlternativas();
+}
+
+function mostraAlternativas(){
+    for(const alternativa of perguntaAtual.alternativas){
+        const botaoAlternativas = document.createElement("button");
+        botaoAlternativas.textContent = alternativa.texto;
+        botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
+        caixaAlternativas.appendChild(botaoAlternativas);
+    }
+}
+
+function respostaSelecionada(opcaoSelecionada){
+    if(opcaoSelecionada.correta){
+        score++;
+    }
+    atual++;
+    mostraPergunta();
+}
+
+function mostraResultado(){
+    caixaPerguntas.textContent = "Fim do Quiz de Kalos!";
+    
+    let mensagem = "";
+    if(score === 15){
+        mensagem = "Incrível! Você é um verdadeiro Mestre Pokémon de Kalos!";
+    } else if(score >= 10){
+        mensagem = "Muito bem! Você conhece bastante a região de Kalos!";
+    } else if(score >= 5){
+        mensagem = "Bom esforço! Continue estudando os Pokémon de Kalos!";
+    } else {
+        mensagem = "Que tal jogar Pokémon X ou Y para aprender mais sobre Kalos?";
+    }
+
+    textoResultado.innerHTML = `Você acertou <b>${score}</b> de <b>15</b> perguntas!<br><br>${mensagem}`;
+    caixaAlternativas.innerHTML = "";
+}
+
+mostraPergunta();
