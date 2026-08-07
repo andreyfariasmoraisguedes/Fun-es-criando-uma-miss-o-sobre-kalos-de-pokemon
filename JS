@@ -160,21 +160,37 @@ function respostaSelecionada(opcaoSelecionada){
 }
 
 function mostraResultado(){
-    caixaPerguntas.textContent = "Fim do Quiz de Kalos!";
-    
-    let mensagem = "";
+    caixaPerguntas.textContent = "Sua aventura em Kalos chegou ao fim!";
+    caixaAlternativas.innerHTML = "";
+
+    let mensagemScore = "";
     if(score === 15){
-        mensagem = "Incrível! Você é um verdadeiro Mestre Pokémon de Kalos!";
+        mensagemScore = "Incrível! Você acertou todas as 15 perguntas e se tornou um verdadeiro Mestre de Kalos!";
     } else if(score >= 10){
-        mensagem = "Muito bem! Você conhece bastante a região de Kalos!";
+        mensagemScore = `Muito bem! Você acertou <b>${score}</b> de 15 e conhece bastante a região de Kalos!`;
     } else if(score >= 5){
-        mensagem = "Bom esforço! Continue estudando os Pokémon de Kalos!";
+        mensagemScore = `Bom esforço! Você acertou <b>${score}</b> de 15. Continue explorando Kalos!`;
     } else {
-        mensagem = "Que tal jogar Pokémon X ou Y para aprender mais sobre Kalos?";
+        mensagemScore = `Você acertou <b>${score}</b> de 15. Que tal jogar Pokémon X ou Y para descobrir mais?`;
     }
 
-    textoResultado.innerHTML = `Você acertou <b>${score}</b> de <b>15</b> perguntas!<br><br>${mensagem}`;
-    caixaAlternativas.innerHTML = "";
+    const historia = `
+        <br><br>
+        <b>A História de Kalos</b><br><br>
+        Em uma terra de beleza e mistério chamada Kalos, três jovens treinadores receberam seus primeiros parceiros: o corajoso <b>Chespin</b>, a elegante <b>Fennekin</b> e o ágil <b>Froakie</b>.  
+        <br><br>
+        Enquanto viajavam, encontraram a líder de ginásio <b>Viola</b> e seus Pokémon do tipo Inseto, depois desafiaram a guerreira <b>Korrina</b> no tipo Lutador. Na grande cidade de <b>Lumiose</b>, o inventor <b>Clemont</b> os desafiou com o poder da eletricidade.  
+        <br><br>
+        Foi em Kalos que o mundo descobriu o tipo <b>Fada</b> e conheceu a evolucão especial <b>Sylveon</b>. Também nasceu o poder da <b>Mega Evolução</b>, ativado com a Key Stone e a <b>Mega Stone</b>.  
+        <br><br>
+        No coração da região, os lendários despertaram: <b>Xerneas</b>, guardião da vida e da natureza, e <b>Yveltal</b>, o ser da destruição. Observando tudo em silêncio, o misterioso <b>Zygarde</b> protegia o equilíbrio nas suas formas 10%, 50% e Completa.  
+        <br><br>
+        No final da jornada, os treinadores enfrentaram a poderosa Campeã <b>Diantha</b> e provaram que, com coragem, amizade e conhecimento, qualquer um pode se tornar uma lenda em Kalos.  
+        <br><br>
+        E agora, com o que você aprendeu neste quiz, a próxima página dessa história pode ser escrita por você!
+    `;
+
+    textoResultado.innerHTML = mensagemScore + historia;
 }
 
 mostraPergunta();
