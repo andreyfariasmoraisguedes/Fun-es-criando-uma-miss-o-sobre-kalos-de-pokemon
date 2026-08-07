@@ -1,6 +1,6 @@
 :root{
     --cor-fundo: #01080E;
-    --cor-principal: #0b2016 ;
+    --cor-principal: #0b2016;
     --cor-secundaria: #0c2d19;
     --cor-destaque: #2bfd82;
     --cor-texto: #D7F9FF;
@@ -13,39 +13,54 @@ body{
     align-items: center;
     min-height: 100vh;
     font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 20px;
 }
 .caixa-principal{
     background-color: var(--cor-principal);
     width: 90%;
     max-width: 600px;
     text-align: center;
-    padding: 20px;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(43, 253, 130, 0.15);
 }
 .caixa-perguntas{
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     line-height: 1.5em;
+    font-size: 1.1em;
 }
 h1{
     color: var(--cor-destaque);
+    margin-bottom: 25px;
+    font-family: "Chakra Petch", sans-serif;
 }
 button{
     background-color: var(--cor-secundaria);
     color: var(--cor-texto);
     border: none;
     border-radius: 15px;
-    padding: 15px;
-    transition: background-color 0.3s;
-    margin:5px;
+    padding: 14px 18px;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 6px;
     font-family: "Chakra Petch", sans-serif;
     font-size: 16px;
+    cursor: pointer;
+    width: 90%;
+    max-width: 320px;
 }
 button:hover{
     background-color: var(--cor-destaque);
     color: var(--cor-principal);
+    transform: scale(1.03);
+}
+.texto-resultado{
+    line-height: 1.6em;
+    text-align: left;
+    margin-top: 15px;
 }
 .texto-resultado b{
     font-family: "Chakra Petch", sans-serif;
     font-weight: 700;
     color: var(--cor-destaque);
-    line-height: 1.5em;
 }
